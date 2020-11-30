@@ -53,11 +53,10 @@ We can now add products on: http://127.0.0.1:8000/admin/products/product/
 > Products.objects.create(title="Product Name",price="10")
 > Product.objects.all()
 
-## Creating Views
-For a partial we can import HttpResponse and add a function to *'views.py'* in the project folder:
+## HttpResponse
+For a simple response we can import HttpResponse and add a function to *'views.py'* in the project folder:
 
     from django.http import HttpResponse
-    from django.shortcuts import render
     
     def home_view(*args, **kwargs):
         return "<h1>Hello World</h1>"
@@ -71,3 +70,55 @@ Then we need to add to *'urls.py'*:
         path('admin/', admin.site.urls),
     ]
 
+## Templating
+To respond with templates we use the *render* import:
+
+    from django.shortcuts import render
+
+    def index(request, *args, **kwargs):
+        return render(request, "index.html")
+
+And we can create our templates in the *'templates'* folder. If we aren't using PyCharm we might have to configure 
+the templates folder in *settings.py*, like this:
+
+    'DIRS': [BASE_DIR / 'templates']
+
+or with an *'os'* import:
+
+    [os.path.join(BASE_DIR, "templates")]
+    
+## Template Inheritance
+We can create a *'base'-template* to inherit from when creating pages. 
+To indicate where our content will go, we use the following tags within this base template:
+
+    {% block content %}{% endblock %}
+
+Likewise we will wrap our content pages with these tags and extend the *'base'-template* at the top of the page:
+
+    {% extends 'base.html' %}
+    
+## Static resources
+At the top of the template where you want to import the static folder:
+
+    {% load static %}
+
+We then reference to the stylesheet like this (presuming the path = static/css/style.css):
+
+    href="{% static 'css/style.css' %}"
+    
+Configure STATICFILES_DIRS in *'settings.py'* depending on where you want your static folder to be.  
+In templates folder:
+
+    STATICFILES_DIRS = [BASE_DIR / 'templates/static']
+
+In project directory:
+
+    STATICFILES_DIRS = [BASE_DIR / 'static']
+    
+Or similarly with an os import:
+
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'templates/static')]
+
+[Official documentation](https://docs.djangoproject.com/en/3.1/howto/static-files/)
+
+## 
