@@ -16,9 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from DjangoCourse import views
+from DjangoCourse.views import *
+from products.views import products
+
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', index, name='index'),
+    path('contact', contact, name='contact'),
+
+    path('products', products, name='products'),
+
     path('admin/', admin.site.urls),
 ]
