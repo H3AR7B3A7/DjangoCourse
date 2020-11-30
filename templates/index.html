@@ -1,9 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Welcome</h1>
-<h3>{{ request.user }}</h3>
+    <h1>Welcome</h1>
+    <h3>{{ request.user }}</h3>
 
-<p>Have a good time!</p>
+    <p>Have a good time!</p>
+
+    <p>{{ my_text }}</p>
+
+    {% for item in my_list %}
+        <li>{{ item }}</li>
+    {% endfor %}
 
 {% endblock %}
