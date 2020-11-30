@@ -11,3 +11,32 @@ body {
     background-color: rebeccapurple;
     color: white;
 }
+
+
+/* NAVBAR */
+.navbar-nav {
+    flex-direction: row;
+}
+
+.navbar-nav li:hover {
+    background-color: magenta;
+}
+
+.navbar-nav li {
+    padding-left: 3rem;
+    padding-right: 3rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border: 3px solid white;
+    cursor: pointer;
+}
+
+.navbar-nav li a {
+    color: white;
+    text-decoration: none;
+}
+
+.navbar-nav li a:hover {
+    color: unset;
+    text-decoration: none;
+}
