@@ -85,7 +85,7 @@ the templates folder in *settings.py*, like this:
 
 or with an *'os'* import:
 
-    [os.path.join(BASE_DIR, "templates")]
+    'DIRS': [os.path.join(BASE_DIR, "templates")]
     
 ## Template Inheritance
 We can create a *'base'-template* to inherit from when creating pages. 
@@ -97,6 +97,11 @@ Likewise we will wrap our content pages with these tags and extend the *'base'-t
 
     {% extends 'base.html' %}
     
+## Partials
+We can also include partials in other pages with:
+
+    {% include 'navbar.html' %}
+
 ## Static resources
 At the top of the template where you want to import the static folder:
 
@@ -121,4 +126,19 @@ Or similarly with an os import:
 
 [Official documentation](https://docs.djangoproject.com/en/3.1/howto/static-files/)
 
-## 
+## Template Context
+We can add context to our template in views.py:
+
+    def index(request, *args, **kwargs):
+        my_context = { "my_text": "Some text ...",
+                       "my_list": [5, 6, 7, 8]}
+        return render(request, "index.html", my_context)
+
+Now we can output this context in *index.html* using the key in between handlebars:
+
+    {{ my_text }}
+
+    {% for item in my_list %}
+        <li>{{ item }}</li>
+    {% endfor %}
+    
