@@ -248,5 +248,44 @@ We can create our url in *'urls.py'* a little different:
     path('update/<int:product_id>', update_form, name='updateform'),
 
 When we do it this way, we can make our urls look a little cleaner:  
-*'/product/1'*
+*'/product/1'*  
+And we simply get our object like this:
+
+    obj = Product.objects.get(id=product_id)
+
+## 404: Page Not Found
+When we enter an invalid product id as parameter we get a user unfriendly exception. 
+To solve this we import get_object_or_404 from django.shortcuts and get our object like this instead:
+
+    obj = get_object_or_404(Product, id=product_id)
+
+Now we will get the 404 response we all know and love.  
+Another way to achieve this would be to import *'Http404'* from django.http and fetch the object in a *'try'-block*:
+
+    try:
+        obj = Product.objects.get(id=product_id)
+    except Product.DoesNotExist:
+        raise Http404
+
+## Delete Form / Button
+Our link to delete looks similar to the one to update:
+
+    path('delete/<int:product_id>', delete_product, name='delete_product'),
+    
+our function is rather simple but we want ot to be a post with CSRF-token:
+
+    def delete_product(request, product_id):
+        obj = get_object_or_404(Product, id=product_id)
+        if request.method == "POST":
+            obj.delete()
+        return redirect('/products')
+
+And finally our form will look something like this:
+
+    <form id="del-form" action="/delete/{{ item.id }}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Delete">
+    </form>
+
+It will basically just be a button in a form with POST as method.
 
