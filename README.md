@@ -289,3 +289,13 @@ And finally our form will look something like this:
 
 It will basically just be a button in a form with POST as method.
 
+## Absolute path
+To make our apps reusable we have some cleanup/work to do. 
+One of the things we might want to take use of is absolute paths.
+
+    def get_absolute_url(self):
+        return reverse("delete-product", kwargs={"product_id": self.id})
+    
+With this function in *'model.py'*, we can simply refer to our urls with 
+
+    {{ item.get_absolute_url }}

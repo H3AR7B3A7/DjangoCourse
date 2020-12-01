@@ -5,21 +5,21 @@ from django.shortcuts import redirect
 from .forms import CustomProductForm
 
 
-def product_all(request, *args, **kwargs):
+def products_all(request, *args, **kwargs):
     context = {
         "list": Product.objects.all()
     }
     return render(request, "product/products.html", context)
 
 
-def product_detail(request, *args, **kwargs):
+def products_detail(request, product_id, *args, **kwargs):
     context = {
-        "object": Product.objects.get(id=request.GET['id'])
+        "object": Product.objects.get(id=product_id)
     }
     return render(request, "product/detail.html", context)
 
 
-def product_form(request):
+def products_create(request):
     form = ProductForm(request.POST or None)
     if form.is_valid():
         form.save()
@@ -30,7 +30,7 @@ def product_form(request):
     return render(request, "product/form.html", context)
 
 
-def custom_product_form(request):
+def products_custom_create(request):
     my_form = CustomProductForm()
     if request.method == "POST":
         my_form = CustomProductForm(request.POST)
@@ -46,7 +46,7 @@ def custom_product_form(request):
     return render(request, "product/custom_form.html", context)
 
 
-def update_form(request, product_id):
+def products_update(request, product_id):
     obj = get_object_or_404(Product, id=product_id)
     initial_data = {
         'title': obj.title,
@@ -63,7 +63,7 @@ def update_form(request, product_id):
     return render(request, "product/form.html", context)
 
 
-def delete_product(request, product_id):
+def products_delete(request, product_id):
     obj = get_object_or_404(Product, id=product_id)
     if request.method == "POST":
         obj.delete()

@@ -4,9 +4,9 @@
     <h1>Products</h1>
     {% for item in list %}
     <li>
-        <a href="/product/?id={{ item.id }}">{{ item.title }}</a> -
-        <a href="/update/{{ item.id }}">Update</a> -
-        <form id="del-form" action="{{ item.get_absolute_url }}" method="post">
+        <a href="{{ item.get_absolute_url }}">{{ item.title }}</a> -
+        <a href="{{ item.get_absolute_url }}/update/">Update</a> -
+        <form id="del-form" action="{{ item.get_absolute_url }}/delete/" method="post">
             {% csrf_token %}
             <a id="del" onclick="this.closest('form').submit()">Delete</a>
         </form>

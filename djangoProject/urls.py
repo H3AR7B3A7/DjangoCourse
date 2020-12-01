@@ -23,12 +23,12 @@ urlpatterns = [
     path('', index, name='index'),
     path('contact/', contact, name='contact'),
 
-    path('products/', product_all, name='products'),
-    path('product/', product_detail, name='product'),
-    path('form/', product_form, name='product-form'),
-    path('customform/', custom_product_form, name='custom-product-form'),
-    path('update/<int:product_id>', update_form, name='update-product-form'),
-    path('delete/<int:product_id>', delete_product, name='delete-product'),
+    path('products/', products_all, name='products'),
+    path('products/<int:product_id>', products_detail, name='products-detail'),
+    path('products/create/', products_create, name='products-create'),
+    path('products/customcreate/', products_custom_create, name='custom-product-form'),
+    path('products/<int:product_id>/update/', products_update, name='update-product-form'),
+    path('products/<int:product_id>/delete/', products_delete, name='delete-product'),
 
     path('admin/', admin.site.urls),
 ]
