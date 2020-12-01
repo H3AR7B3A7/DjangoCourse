@@ -27,7 +27,8 @@ urlpatterns = [
     path('contact/', contact, name='contact'),
 
     path('products/', product_all, name='products'),
-    path('product/', product_detail, name='products'),
+    path('product/', product_detail, name='product'),
+    path('form/', product_form, name='form'),
 
     path('admin/', admin.site.urls),
 ]
