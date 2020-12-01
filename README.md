@@ -201,7 +201,8 @@ And then we create a template to go with that form:
     </form>
     
 We can have more control over our forms by using *'Form'* instead of *'ModelForm'*. 
-An example of this was included inside the project.
+An example of this was included inside the project. 
+Both forms are fully styled and exactly the same, for a good comparison.
 
 ## Redirect
 To redirect *from django.shortcuts import redirect* and:

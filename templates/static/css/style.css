@@ -16,6 +16,8 @@ body #content {
 }
 
 
+
+
 /* PRODUCT AND PRODUCTS*/
 a {
     color: white;
@@ -28,51 +30,60 @@ a:hover {
 }
 
 
+
+
 /* FORMS */
 form {
     text-align: center;
 }
 
-label {
-    width: 100%;
-}
-
-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: white;
-  opacity: 1; /* Firefox */
-}
-
-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
-  color: white;
-}
-
-input::-ms-input-placeholder { /* Microsoft Edge */
-  color: white;
+input, textarea {
+    border-radius: 5px;
+    border-color: white;
+    border-width: 2px;
 }
 
 input[type=text], textarea, input[type=number] {
     background-color: mediumpurple !important;
+    width: 20rem;
+    border-style: inset;
+    padding-left: .5rem;
+    padding-right: .5rem;
+}
+
+input[type=submit] {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+::placeholder, textarea { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder, textarea { /* Internet Explorer 10-11 */
+  color: white;
+}
+
+::-ms-input-placeholder, textarea { /* Microsoft Edge */
+  color: white;
 }
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
-input:-webkit-autofill:active  {
+input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 30px mediumpurple inset !important;
-}
-
-input[type=submit] {
-    padding-left: 1rem;
-    padding-right: 1rem;
 }
 
 input:hover, textarea:hover {
     background-color: magenta !important;
 }
 
-input:focus {
+input:focus, textarea {
         outline: none;
 }
+
 
 
 
@@ -90,7 +101,10 @@ input:focus {
 .navbar-nav li {
     margin-left: 1rem;
     margin-right: 1rem;
-    border: 3px solid white;
+    border-color: white;
+    border-width: 2px;
+    border-radius: 5px;
+    border-style: outset;
     cursor: pointer;
 }
 
