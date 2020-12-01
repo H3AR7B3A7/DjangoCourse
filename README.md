@@ -142,3 +142,28 @@ Now we can output this context in *index.html* using the key in between handleba
         <li>{{ item }}</li>
     {% endfor %}
     
+To add database entries of an app to our context:
+
+    "list": Product.objects.all()
+
+## Parameters
+We can direct users to the details of just one object by fetching a parameter in the url:
+
+    "object": Product.objects.get(id=request.GET['id'])
+    
+The link to this would be: *'/product/?id=1'*, 
+which we could offer the user with something like this on the *'products'-page*:
+
+    {% for item in list %}
+    <li><a href="/product/?id={{ item.id }}">{{ item.title }}</a></li>
+    {% endfor %}
+    
+## Filters
+We can add simple 'filters' by adding them after a | *'pipe'*:
+
+    {{ item.price|add:10 }}
+
+[Built-in Tags / Filters](https://docs.djangoproject.com/en/3.1/ref/templates/builtins/)  
+[Custom Tags / Filters](https://docs.djangoproject.com/en/3.1/howto/custom-template-tags/)
+
+##
