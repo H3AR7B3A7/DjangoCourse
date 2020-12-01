@@ -17,16 +17,17 @@ from django.contrib import admin
 from django.urls import path
 
 from DjangoCourse.views import *
-from products.views import products
+from products.views import *
 
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('', index, name='index'),
-    path('contact', contact, name='contact'),
+    path('contact/', contact, name='contact'),
 
-    path('products', products, name='products'),
+    path('products/', product_all, name='products'),
+    path('product/', product_detail, name='products'),
 
     path('admin/', admin.site.urls),
 ]
