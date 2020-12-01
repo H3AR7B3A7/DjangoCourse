@@ -30,6 +30,7 @@ urlpatterns = [
     path('product/', product_detail, name='product'),
     path('form/', product_form, name='form'),
     path('customform/', custom_product_form, name='customform'),
+    path('update/<int:product_id>', update_form, name='updateform'),
 
     path('admin/', admin.site.urls),
 ]

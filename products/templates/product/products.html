@@ -3,7 +3,10 @@
 
     <h1>Products</h1>
     {% for item in list %}
-    <li><a href="/product/?id={{ item.id }}">{{ item.title }}</a></li>
+    <li>
+        <a href="/product/?id={{ item.id }}">{{ item.title }}</a> -
+        <a href="/update/{{ item.id }}">Update</a>
+    </li>
     {% endfor %}
 
 {% endblock %}

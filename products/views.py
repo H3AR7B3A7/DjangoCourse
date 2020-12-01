@@ -44,3 +44,20 @@ def custom_product_form(request):
         "form": my_form
     }
     return render(request, "product/custom_form.html", context)
+
+
+def update_form(request, product_id):
+    obj = Product.objects.get(id=product_id)
+    initial_data = {
+        'title': obj.title,
+        'description': obj.description,
+        'price': obj.price
+    }
+    form = ProductForm(request.POST or None, initial=initial_data, instance=obj)
+    if form.is_valid():
+        form.save()
+        return redirect('/products')
+    context = {
+        "form": form
+    }
+    return render(request, "product/form.html", context)
