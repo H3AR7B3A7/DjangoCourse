@@ -299,3 +299,4 @@ One of the things we might want to take use of is absolute paths.
 With this function in *'model.py'*, we can simply refer to our urls with 
 
     {{ item.get_absolute_url }}
+    
