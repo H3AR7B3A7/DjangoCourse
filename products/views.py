@@ -7,7 +7,7 @@ from .forms import CustomProductForm
 
 def products_all(request, *args, **kwargs):
     context = {
-        "list": Product.objects.all()
+        "products_list": Product.objects.all()
     }
     return render(request, "product/products.html", context)
 

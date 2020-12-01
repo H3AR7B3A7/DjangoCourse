@@ -11,4 +11,9 @@ def index(request, *args, **kwargs):
 
 
 def contact(request, *args, **kwargs):
-    return HttpResponse("<h1>Contact</h1>")
+    return HttpResponse(
+        """
+        <h1>Contact</h1>
+        <a href="/">Back</a>
+        """
+    )

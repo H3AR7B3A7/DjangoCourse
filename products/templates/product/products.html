@@ -2,11 +2,11 @@
 {% block content %}
 
     <h1>Products</h1>
-    {% for item in list %}
+    {% for product in products_list %}
     <li>
-        <a href="{{ item.get_absolute_url }}">{{ item.title }}</a> -
-        <a href="{{ item.get_absolute_url }}/update/">Update</a> -
-        <form id="del-form" action="{{ item.get_absolute_url }}/delete/" method="post">
+        <a href="{{ product.get_absolute_url }}">{{ product.title }}</a> -
+        <a href="{{ product.get_absolute_url }}/update/">Update</a> -
+        <form id="del-form" action="{{ product.get_absolute_url }}/delete/" method="post">
             {% csrf_token %}
             <a id="del" onclick="this.closest('form').submit()">Delete</a>
         </form>
