@@ -15,6 +15,15 @@ body #content {
     flex-direction: column;
 }
 
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: magenta;
+    text-decoration: none;
+}
 
 /* NAVBAR */
 .navbar-nav {
