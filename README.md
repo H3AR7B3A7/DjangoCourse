@@ -195,8 +195,12 @@ We import ProductForm from .forms in *'views.py'* and we add a function for our 
 
 And then we create a template to go with that form:
 
-    <form>
+    <form method="post"> {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Save">
     </form>
 
+## Redirect
+To redirect *from django.shortcuts import redirect* and:
+
+    return redirect('/products')
