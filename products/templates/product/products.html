@@ -5,7 +5,11 @@
     {% for item in list %}
     <li>
         <a href="/product/?id={{ item.id }}">{{ item.title }}</a> -
-        <a href="/update/{{ item.id }}">Update</a>
+        <a href="/update/{{ item.id }}">Update</a> -
+        <form id="del-form" action="/delete/{{ item.id }}" method="post">
+            {% csrf_token %}
+            <a id="del" onclick="this.closest('form').submit()">Delete</a>
+        </form>
     </li>
     {% endfor %}
 

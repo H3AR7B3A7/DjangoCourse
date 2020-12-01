@@ -19,18 +19,16 @@ from django.urls import path
 from DjangoCourse.views import *
 from products.views import *
 
-from django.conf import settings
-from django.conf.urls.static import static
-
 urlpatterns = [
     path('', index, name='index'),
     path('contact/', contact, name='contact'),
 
     path('products/', product_all, name='products'),
     path('product/', product_detail, name='product'),
-    path('form/', product_form, name='form'),
-    path('customform/', custom_product_form, name='customform'),
-    path('update/<int:product_id>', update_form, name='updateform'),
+    path('form/', product_form, name='product_form'),
+    path('customform/', custom_product_form, name='custom_product_form'),
+    path('update/<int:product_id>', update_form, name='update_product_form'),
+    path('delete/<int:product_id>', delete_product, name='delete_product'),
 
     path('admin/', admin.site.urls),
 ]

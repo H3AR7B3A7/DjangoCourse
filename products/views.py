@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Product
 from .forms import ProductForm
 from django.shortcuts import redirect
@@ -47,7 +47,7 @@ def custom_product_form(request):
 
 
 def update_form(request, product_id):
-    obj = Product.objects.get(id=product_id)
+    obj = get_object_or_404(Product, id=product_id)
     initial_data = {
         'title': obj.title,
         'description': obj.description,
@@ -61,3 +61,10 @@ def update_form(request, product_id):
         "form": form
     }
     return render(request, "product/form.html", context)
+
+
+def delete_product(request, product_id):
+    obj = get_object_or_404(Product, id=product_id)
+    if request.method == "POST":
+        obj.delete()
+    return redirect('/products')
