@@ -166,4 +166,37 @@ We can add simple 'filters' by adding them after a | *'pipe'*:
 [Built-in Tags / Filters](https://docs.djangoproject.com/en/3.1/ref/templates/builtins/)  
 [Custom Tags / Filters](https://docs.djangoproject.com/en/3.1/howto/custom-template-tags/)
 
-##
+## Model Forms
+We create a file *'forms.py'* in our app and write out a model:
+
+    from django import forms
+    from .models import Product
+    
+    class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = [
+            'title',
+            'description',
+            'price'
+        ]
+
+We import ProductForm from .forms in *'views.py'* and we add a function for our form:
+
+    def product_form(request, *args, **kwargs):
+        form = ProductForm(request.POST or None)
+        if form.is_valid():
+            form.save()
+    
+        context = {
+            "form": form
+        }
+        return render(request, "product/form.html", context)
+
+And then we create a template to go with that form:
+
+    <form>
+        {{ form.as_p }}
+        <input type="submit" value="Save">
+    </form>
+
