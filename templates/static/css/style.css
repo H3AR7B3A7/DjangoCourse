@@ -29,6 +29,15 @@ a:hover {
     text-decoration: none;
 }
 
+#del-form {
+    display: inline-block
+}
+
+#del:hover {
+    color: magenta;
+    cursor: pointer;
+}
+
 
 
 
