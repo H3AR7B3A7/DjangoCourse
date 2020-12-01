@@ -209,3 +209,44 @@ To redirect *from django.shortcuts import redirect* and:
 
     return redirect('/products')
     
+## Form Validation
+There are default validations using Django. We can make our own validations too though:
+
+    def clean_title(self, *args, **kwargs):
+        title = self.cleaned_data.get('title')
+        if "CFE" not in title:
+            raise forms.ValidationError("This is not a valid title")
+        else:
+            return title
+
+## Update Form
+We can make a form to update our products using the same form template by tweaking the form function a little:
+
+    def update_form(request):
+        obj = Product.objects.get(id=request.GET['id'])
+        initial_data = {
+            'title': obj.title,
+            'description': obj.description,
+            'price': obj.price
+        }
+        form = ProductForm(request.POST or None, initial=initial_data, instance=obj)
+        if form.is_valid():
+            form.save()
+            return redirect('/products')
+        context = {
+            "form": form
+        }
+        return render(request, "product/form.html", context)
+
+And we just give this function to a new url in *'urls.py'*
+
+## Parameters
+Instead of using default params getting them from the request that are passed like this:  
+*'/product/?id=1'*  
+We can create our url in *'urls.py'* a little different:
+
+    path('update/<int:product_id>', update_form, name='updateform'),
+
+When we do it this way, we can make our urls look a little cleaner:  
+*'/product/1'*
+
