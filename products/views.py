@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Product
 from .forms import ProductForm
+from django.shortcuts import redirect
 
 
 def product_all(request, *args, **kwargs):
@@ -21,7 +22,7 @@ def product_form(request):
     form = ProductForm(request.POST or None)
     if form.is_valid():
         form.save()
-
+        return redirect('/products')
     context = {
         "form": form
     }
