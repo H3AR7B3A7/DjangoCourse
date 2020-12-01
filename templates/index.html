@@ -9,7 +9,11 @@
     <p>{{ my_text }}</p>
 
     {% for item in my_list %}
-        <li>{{ item }}</li>
+        {% if item == 7 %}
+            <li>{{ forloop.counter }}-{{ item|add:10 }}</li>
+        {% else %}
+            <li>{{ item }}</li>
+        {% endif %}
     {% endfor %}
 
 {% endblock %}
