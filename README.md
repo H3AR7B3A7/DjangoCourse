@@ -199,8 +199,12 @@ And then we create a template to go with that form:
         {{ form.as_p }}
         <input type="submit" value="Save">
     </form>
+    
+We can have more control over our forms by using *'Form'* instead of *'ModelForm'*. 
+An example of this was included inside the project.
 
 ## Redirect
 To redirect *from django.shortcuts import redirect* and:
 
     return redirect('/products')
+    
