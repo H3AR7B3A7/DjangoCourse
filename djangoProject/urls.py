@@ -25,10 +25,10 @@ urlpatterns = [
 
     path('products/', product_all, name='products'),
     path('product/', product_detail, name='product'),
-    path('form/', product_form, name='product_form'),
-    path('customform/', custom_product_form, name='custom_product_form'),
-    path('update/<int:product_id>', update_form, name='update_product_form'),
-    path('delete/<int:product_id>', delete_product, name='delete_product'),
+    path('form/', product_form, name='product-form'),
+    path('customform/', custom_product_form, name='custom-product-form'),
+    path('update/<int:product_id>', update_form, name='update-product-form'),
+    path('delete/<int:product_id>', delete_product, name='delete-product'),
 
     path('admin/', admin.site.urls),
 ]
