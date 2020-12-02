@@ -2,12 +2,24 @@
 {% block content %}
 
     <h1>Product</h1>
-    <h3>{{ object.title }}</h3>
-    <p>{{ object.description }}</p>
-    <p>{{ object.price }}</p>
-    <p>{% if object.summary != '' %}{{ object.summary }}{% else %}No summary.{% endif %}</p>
+    <h3>{{ product.title }}</h3>
+    <p>{{ product.description }}</p>
+    <p>{{ product.price }}</p>
+    <p>{% if product.summary != '' %}{{ product.summary }}{% else %}No summary.{% endif %}</p>
 
     <br>
+
     <a href="/products">Back</a>
+
+    <br>
+
+    <div>
+        <a href="{{ product.get_absolute_url }}/update/">Update</a>
+        -
+        <form id="del-form" action="{{ product.get_absolute_url }}/delete/" method="post">
+            {% csrf_token %}
+            <a id="del" onclick="this.closest('form').submit()">Delete</a>
+        </form>
+    </div>
 
 {% endblock %}

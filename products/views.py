@@ -14,7 +14,7 @@ def products_all(request, *args, **kwargs):
 
 def products_detail(request, product_id, *args, **kwargs):
     context = {
-        "object": Product.objects.get(id=product_id)
+        "product": Product.objects.get(id=product_id)
     }
     return render(request, "product/detail.html", context)
 
