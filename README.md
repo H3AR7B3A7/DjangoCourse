@@ -316,7 +316,9 @@ In terminal:
 Add file to root named:
 Procfile
     
-    web: gunicorn mysite-project.wsgi
+    web: gunicorn mysite-project.wsgi:application --log-file - --log-level debug
+    python manage.py collectstatic --noinput
+    manage.py migrate
 
 *Edit 'settings.py'*:
 
