@@ -57,7 +57,7 @@ We can now add products on: http://127.0.0.1:8000/admin/products/product/
 For a simple response we can import HttpResponse and add a function to *'views.py'* in the project folder:
 
     from django.http import HttpResponse
-    
+
     def home_view(*args, **kwargs):
         return "<h1>Hello World</h1>"
 
@@ -86,7 +86,7 @@ the templates folder in *settings.py*, like this:
 or with an *'os'* import:
 
     'DIRS': [os.path.join(BASE_DIR, "templates")]
-    
+
 ## Template Inheritance
 We can create a *'base'-template* to inherit from when creating pages. 
 To indicate where our content will go, we use the following tags within this base template:
@@ -96,7 +96,7 @@ To indicate where our content will go, we use the following tags within this bas
 Likewise we will wrap our content pages with these tags and extend the *'base'-template* at the top of the page:
 
     {% extends 'base.html' %}
-    
+
 ## Partials
 We can also include partials in other pages with:
 
@@ -110,7 +110,7 @@ At the top of the template where you want to import the static folder:
 We then reference to the stylesheet like this (presuming the path = static/css/style.css):
 
     href="{% static 'css/style.css' %}"
-    
+
 Configure STATICFILES_DIRS in *'settings.py'* depending on where you want your static folder to be.  
 In templates folder:
 
@@ -119,7 +119,7 @@ In templates folder:
 In project directory:
 
     STATICFILES_DIRS = [BASE_DIR / 'static']
-    
+
 Or similarly with an os import:
 
     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'templates/static')]
@@ -141,7 +141,7 @@ Now we can output this context in *index.html* using the key in between handleba
     {% for item in my_list %}
         <li>{{ item }}</li>
     {% endfor %}
-    
+
 To add database entries of an app to our context:
 
     "list": Product.objects.all()
@@ -150,14 +150,14 @@ To add database entries of an app to our context:
 We can direct users to the details of just one object by fetching a parameter in the url:
 
     "object": Product.objects.get(id=request.GET['id'])
-    
+
 The link to this would be: *'/product/?id=1'*, 
 which we could offer the user with something like this on the *'products'-page*:
 
     {% for item in list %}
     <li><a href="/product/?id={{ item.id }}">{{ item.title }}</a></li>
     {% endfor %}
-    
+
 ## Filters
 We can add simple 'filters' by adding them after a | *'pipe'*:
 
@@ -171,7 +171,7 @@ We create a file *'forms.py'* in our app and write out a model:
 
     from django import forms
     from .models import Product
-    
+
     class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
@@ -199,7 +199,7 @@ And then we create a template to go with that form:
         {{ form.as_p }}
         <input type="submit" value="Save">
     </form>
-    
+
 We can have more control over our forms by using *'Form'* instead of *'ModelForm'*. 
 An example of this was included inside the project. 
 Both forms are fully styled and exactly the same, for a good comparison.
@@ -208,7 +208,7 @@ Both forms are fully styled and exactly the same, for a good comparison.
 To redirect *from django.shortcuts import redirect* and:
 
     return redirect('/products')
-    
+
 ## Form Validation
 There are default validations using Django. We can make our own validations too though:
 
@@ -271,7 +271,7 @@ Another way to achieve this would be to import *'Http404'* from django.http and 
 Our link to delete looks similar to the one to update:
 
     path('delete/<int:product_id>', delete_product, name='delete_product'),
-    
+
 our function is rather simple but we want ot to be a post with CSRF-token:
 
     def delete_product(request, product_id):
@@ -291,12 +291,19 @@ It will basically just be a button in a form with POST as method.
 
 ## Absolute path
 To make our apps reusable we have some cleanup/work to do. 
-One of the things we might want to take use of is absolute paths.
+One of the things we will want to make use of is absolute paths. 
+For this we import reverse from django.urls and create following function in *'model.py'*:
 
     def get_absolute_url(self):
-        return reverse("delete-product", kwargs={"product_id": self.id})
-    
-With this function in *'model.py'*, we can simply refer to our urls with 
+        return reverse("products-detail", kwargs={"product_id": self.id})
 
-    {{ item.get_absolute_url }}
-    
+Now we can simply refer to our object urls with: 
+
+    {{ product.get_absolute_url }}
+
+Inside the project we can see we moved the products-app related urls inside its own *'urls.py'* 
+and named the app so we can use a namespace:
+
+    def get_absolute_url(self):
+        return reverse("products:products-detail", kwargs={"product_id": self.id})
+
