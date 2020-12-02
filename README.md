@@ -307,3 +307,34 @@ and named the app so we can use a namespace:
     def get_absolute_url(self):
         return reverse("products:products-detail", kwargs={"product_id": self.id})
 
+## Heroku Deployment
+In terminal:
+>pip install gunicorn  
+>pip install django-heroku  
+>pip freeze > requirements.txt
+
+Add file to root named:
+Procfile
+    
+    web: gunicorn mysite-project.wsgi
+
+*Edit 'settings.py'*:
+
+    import django_heroku
+    import dj_database_url
+    ...
+    ALLOWED_HOSTS = ['*']
+    ...
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.sqlite3',
+    #         'NAME': BASE_DIR / 'db.sqlite3',
+    #     }
+    # }
+    
+    DATABASES = {
+        'default': dj_database_url.config()
+    }
+    ...
+    django_heroku.settings(locals())
+
