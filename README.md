@@ -337,3 +337,32 @@ Procfile
     }
     ...
     django_heroku.settings(locals())
+
+- Install Heroku toolbelt
+- Login to Heroku:
+    
+    heroku login
+
+- Create an application on Heroku:
+
+    heroku create heroku rename name
+
+- Add SSL protection to the project:
+
+    heroku keys:add
+
+- Add remote
+
+    git remote add projectname ~git url from heroku~.git
+
+- Push the application to heroku:
+
+    git push projectname master
+    
+- Create db on heroku
+
+    heroku addons:create --app projectname heroku-postgresql:hobby-dev
+
+- Migrate
+
+    heroku run manage.py migrate
