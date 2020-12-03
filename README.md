@@ -370,3 +370,6 @@ Procfile
 - Migrate
 
     heroku run manage.py migrate
+    
+To get logs from Heroku:
+>heroku logs --app projectname --tail
