@@ -1,3 +1,5 @@
+[![Uptime Robot status](https://img.shields.io/uptimerobot/status/m786556554-48a33d9216a9404e15e21062?label=Example%20Django%20Project&style=for-the-badge)](https://exampledjango.herokuapp.com/)
+
 # Django Course
 ### Setup
 [Python](https://docs.python.org/3.7/) 3.7.9 | [Django](https://docs.djangoproject.com/en/3.1/) 3.1.3
