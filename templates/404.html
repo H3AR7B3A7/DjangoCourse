@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h1>Oh, oh ...</h1>
+    <div class="jumbotron">
+        <h1 class="display-4">Page Not Found</h1>
+        <p class="lead">Sorry, this page is missing or doesn't exist.</p>
+        <hr class="my-4">
+        <a href="{% url 'index' %}">Return to home page...</a>
+    </div>
+
+{% endblock %}

@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'ie(tb%96@-npa&cn=5k7ab_+v=m1rw6#hjb0o#f&=gjs*bnabc'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -132,5 +132,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'templates/static')]
+
+COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 
 django_heroku.settings(locals())

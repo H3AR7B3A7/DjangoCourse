@@ -17,3 +17,7 @@ def contact(request, *args, **kwargs):
         <a href="/">Back</a>
         """
     )
+
+
+def error_404_view(request, exception):
+    return render(request, "404.html")

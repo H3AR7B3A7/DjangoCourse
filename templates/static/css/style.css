@@ -128,3 +128,12 @@ input:focus, textarea {
     color: unset;
     text-decoration: none;
 }
+
+
+
+
+/* 404 */
+.jumbotron {
+    background-color: rebeccapurple;
+    text-align: center;
+}

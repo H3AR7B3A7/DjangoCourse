@@ -26,3 +26,5 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
 ]
+
+handler404 = 'DjangoCourse.views.error_404_view'
