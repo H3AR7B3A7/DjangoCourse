@@ -14,7 +14,7 @@ def products_all(request, *args, **kwargs):
 
 def products_detail(request, product_id, *args, **kwargs):
     context = {
-        "product": Product.objects.get(id=product_id)
+        "product": get_object_or_404(Product, id=product_id)
     }
     return render(request, "product/detail.html", context)
 
