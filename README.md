@@ -330,6 +330,16 @@ For this to work we will need to disable django compression and run collectstati
 
     COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 
+## Settings Profiles
+To have settings for different environments we can make a copy of *'settings.py'* and name it 
+*'test_settings.py'*. We can then specify the file we want to use with the following environment variable:
+
+    DJANGO_SETTINGS_MODULE=djangoProject.test_settings
+    
+In PyCharm we can simply change the environment variable in *'Edit configurations...'*. 
+If we want to change the default name, we can do this in wsgi.py. 
+We can also import a base settings file to avoid duplicate code.
+
 ## Heroku Deployment
 In terminal:
 >pip install gunicorn  
