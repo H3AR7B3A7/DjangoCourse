@@ -309,6 +309,27 @@ and named the app so we can use a namespace:
     def get_absolute_url(self):
         return reverse("products:products-detail", kwargs={"product_id": self.id})
 
+## Error handling - Custom error page
+- Create a 404.html view
+- In *'urls.py'*:
+
+    handler404 = 'DjangoCourse.views.error_404_view'
+
+- In *'views.py'*:
+
+    def error_404_view(request, exception):
+        return render(request, "404.html")
+
+### 500 error when debug is off
+We will need to set DEBUG = False in *'settings.py'* to see the effect of our changes.
+For this to work we will need to disable django compression and run collectstatic.
+
+- Run the following in console:
+>python manage.py collectstatic 
+- Add the following line to *'settings.py'*:
+
+    COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
+
 ## Heroku Deployment
 In terminal:
 >pip install gunicorn  
